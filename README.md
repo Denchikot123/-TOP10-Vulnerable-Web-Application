@@ -40,7 +40,7 @@
 
 | ID | Категория уязвимости | Статус | Комментарий |
 | :--- | :--- | :---: | :--- |
-| **A01** | Broken Access Control (IDOR) | 🛠 | *В процессе* |
+| **A01** | Broken Access Control (IDOR) | ✅ | *Реализовано и протестировано* |
 | **A02** | Cryptographic Failures | ❌ | *Не реализовано* |
 | **A03** | Injection (SQLi) | ⏳ | *В планах* |
 | **A04** | Insecure Design | ❌ | *Не реализовано* |
