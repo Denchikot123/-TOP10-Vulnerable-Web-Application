@@ -23,7 +23,6 @@ public class UserController {
             throw new RuntimeException("Ошибка: Вы не авторизованы!");
         }
 
-        // Классический IDOR + SQL-инъекция
         String sql = "SELECT username, secret_note FROM users WHERE id = '" + userId + "'";
         return jdbcTemplate.queryForMap(sql);
     }
