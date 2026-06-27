@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/api/auth/login")
-    public String login(@RequestBody Map<String, String> request, HttpSession session) { // <-- Добавили HttpSession сессию сюда
+    public String login(@RequestBody Map<String, String> request, HttpSession session) {
         String username = request.get("username");
         String password = request.get("password");
 
@@ -42,12 +42,12 @@ public class UserController {
         String sql = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
         
         try {
-            Map<String, Object> user = jdbcTemplate.queryForMap(sql); // <-- Поставили ;
+            Map<String, Object> user = jdbcTemplate.queryForMap(sql);
 
             session.setAttribute("userId", user.get("id"));
             session.setAttribute("username", user.get("username"));
 
-            return "Добро пожаловать, " + user.get("username"); // <-- Поставили ;
+            return "Добро пожаловать, " + user.get("username");
         } catch (Exception e) {
             return "Ошибка: Неверный логин или пароль";
         } 
