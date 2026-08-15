@@ -32,7 +32,8 @@
 **Данные админа:**
  - **Username**: admin
  - **Password**: adminSUPER321
-T Анализ
+
+
 Использовав эти данные для входа в аккаунт нам выдали токен админа и показали данные этого профиля
 
 <img width="566" height="78" alt="изображение" src="https://github.com/user-attachments/assets/845b1644-57a7-474d-89ec-93f8cd768d1d" />
@@ -43,5 +44,24 @@ T Анализ
 
 # [2] SAST Анализ
 
-## №1 Анализ логики кода:
+## №1 Анализ структуры проекта:
+```text
+.
+└── src
+    ├── main
+    │   ├── java/com/idortest/vulnerableapi/
+    │   │   ├── UserController.java
+    │   │   └── VulnerableApiApplication.java
+    │   └── resources/
+    │       ├── static/backup/
+    │       │   └── dump.sql
+    │       ├── application.properties
+    │       └── schema.sql
+    └── test/java/com/idortest/vulnerableapi/
+        └── VulnerableApiApplicationTests.java
+```
+
+Исходя по структуре проекта стало понятно, что делался бэкап базы SQL в файле ```dump.sql``` и отнесен в ```static/backup```, что является грубым нарушением и непониманием работы статической директории.
+
+Но давайте поймем в чем причина передачи дампа в **чистом** виде.
 
