@@ -37,7 +37,6 @@ public class UserController {
         String username = request.get("username");
         String password = request.get("password");
 
-        // Классическая SQL-инъекция в авторизации
         String sql = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
         
         try {
