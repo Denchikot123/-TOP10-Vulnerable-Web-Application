@@ -23,7 +23,7 @@ jobs:
           for pom in $(find Projects -name "pom.xml"); do
             mvn clean package -DskipTests -f "$pom"
           done
-
+          
       - name: Run Trivy FS Scan (SAST)
         uses: aquasecurity/trivy-action@master
         with:
