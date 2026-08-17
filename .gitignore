@@ -1,0 +1,13 @@
+**/target/
+**.jar
+**.war
+
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+**.log
+.docker/
