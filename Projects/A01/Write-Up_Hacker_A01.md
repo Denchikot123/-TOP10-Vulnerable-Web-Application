@@ -151,3 +151,17 @@ public class UserController {
  - В **/api/auth/login/** принимается запрос с JSON телом, с параметрами `username`, `password`, который сверяет с базой данных на наличие этого пользователя и валидного пароля. После выдается пользователю `session` токен, который записывается в Cookie.
 
 Данный `session` токен после этого должен сверятся на каждом эндпоинте из нынешнего блока кода в **UserController.java**
+
+Пример проверки `session` токена:
+
+```java
+@GetMapping("/api/profile")
+    public Map<String, Object> getProfile(HttpSession session) {
+        Object userId = session.getAttribute("userId");
+        if (userId == null) {
+            throw new RuntimeException("Ошибка: Вы не авторизованы!");
+        }
+ // ...Логика работы эндпоинта
+```
+
+В данном примере принимается от пользователя лишь `session` токен и идет проверка авторизации пользователя. Если токена нету, либо его несуществует в базе - **"Ошибка, вы не авторизованы"**
