@@ -7,28 +7,27 @@ on:
 jobs:
   build-and-scan:
     runs-on: ubuntu-latest
-    permissions:
-      security-events: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build All Modules with Maven
+        run: |
+          for pom in $(find Projects -name "pom.xml"); do
+            mvn clean package -DskipTests -f "$pom"
+          done
 
       - name: Run Trivy FS Scan (SAST)
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           scan-ref: 'Projects'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
+          format: 'table'
           exit-code: '0'
-          scanners: 'config'
-
-      - name: Upload Trivy scan results
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: 'trivy-results.sarif'
-
-      - name: Build All Modules via Docker Compose
-        working-directory: Projects
-        run: docker-compose build
