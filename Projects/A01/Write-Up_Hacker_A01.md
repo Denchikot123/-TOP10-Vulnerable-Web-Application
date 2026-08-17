@@ -39,9 +39,29 @@
 
 ## №1: Анализ структуры проекта
 
+```text
+Backend_JAVA_A01_v1/
+├── src/
+│   ├── main/
+│   │   ├── java/com/idortest/vulnerableapi/
+│   │   │   ├── UserController.java
+│   │   │   └── VulnerableApiApplication.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       └── schema.sql
+│   └── test/java/com/idortest/vulnerableapi/
+│       └── VulnerableApiApplicationTests.java
+├── HELP.md
+├── mvnw
+├── mvnw.cmd
+└── pom.xml
+```
 
+Структура имеет стандартный вид чистого backend. Ничего подозрительного из списка. Перейдем к анализу логики кода
 
 ## №2: Анализ исходного кода
+
+
 
 ## №3: Главная проблема
 
